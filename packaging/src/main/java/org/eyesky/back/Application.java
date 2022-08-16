@@ -64,17 +64,17 @@ public class Application {
 //            }
 //        };
 //    }
-    @Bean
-    public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
-        return args -> {
-            JpaUser user = new JpaUser();
-            user.setEmail("admin");
-            user.setPassword(encoder.encode("admin"));
-            user.setFirstName("admin");
-            user.setLastName("admin");
-            user.setRoles(Collections.singleton(roleRepository.findByName(RoleEnum.ADMIN)));
-            this.userRepository.save(user);
-        };
-    }
+//    @Bean
+//    public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
+//        return args -> {
+//            JpaUser user = new JpaUser();
+//            user.setEmail("admin");
+//            user.setPassword(encoder.encode("admin"));
+//            user.setFirstName("admin");
+//            user.setLastName("admin");
+//            user.setRoles(Collections.singleton(roleRepository.findByName(RoleEnum.ADMIN)));
+//            this.userRepository.save(user);
+//        };
+//    }
 
 }
