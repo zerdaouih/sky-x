@@ -23,7 +23,8 @@ public class AdminController {
     @PostMapping("/admin/add")
     @PreAuthorize("hasAnyRole('ADMIN')")
     public JpaUser addUser(@RequestBody JpaUser jpaUser) {
-        log.info(" add user  {} by admin...", jpaUser.getEmail());
+        log.info(" add user  {} by admin...   ", jpaUser.getEmail());
+
         jpaUser.setPassword(passwordEncoder.encode(jpaUser.getPassword()));
         JpaUser addedUser = userService.saveUser(jpaUser);
         log.info(" user {} added succesfully.", jpaUser.getEmail());

@@ -38,7 +38,7 @@ public class Application {
 
     public static void main(String[] args) {
         SpringApplicationBuilder app = new SpringApplicationBuilder(Application.class);
-        app.run();
+        app.run(args);
     }
 
     //    @Override
