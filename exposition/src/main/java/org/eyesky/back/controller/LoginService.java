@@ -7,24 +7,18 @@ import org.eyesky.back.controller.request.LoginRequest;
 import org.eyesky.back.controller.response.JwtResponse;
 import org.eyesky.back.repository.RoleRepository;
 import org.eyesky.back.repository.UserRepository;
-import org.eyesky.back.repository.entity.JpaUser;
 import org.eyesky.back.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.security.Principal;
-import java.util.Base64;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -78,8 +72,8 @@ public class LoginService {
     }
 
 
-    @PostMapping("/checkmail")
-    public ResponseEntity<Boolean> checkIfUserMailExists(@RequestBody String userEmail) {
+    @GetMapping("/checkmail/{mail}")
+    public ResponseEntity<Boolean> checkIfUserMailExists(@PathVariable("mail") String userEmail) {
         log.info(" check if user mail {} exists ...", userEmail);
         if (userEmail == null) return ResponseEntity.notFound().build();
         ;

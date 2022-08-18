@@ -33,13 +33,6 @@ public class RegisterController {
     @Autowired
     PasswordEncoder encoder;
 
-    //    @PostMapping()
-    public ResponseEntity<JpaUser> register(@RequestBody JpaUser jpaUser) {
-        log.info(" register user {}  ", jpaUser.getEmail());
-        JpaUser savedUser = userService.saveUser(jpaUser);
-        return ResponseEntity.ok(savedUser);
-    }
-
     @PostMapping()
     public ResponseEntity<?> registerUser(@Valid @RequestBody @NotNull SignupRequest signUpRequest) {
         if (userService.checkIfMailExists(signUpRequest.getEmail())) {

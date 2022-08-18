@@ -8,7 +8,7 @@ public interface UserService {
 
 //    public JpaUser updateExistingUser(JpaUser user, OAuth2UserInfo oAuth2UserInfo);
 
-    public JpaUser findUserByEmail(String email);
+    public Optional<JpaUser> findUserByEmail(String email);
 
     public Optional<JpaUser> findUserById(Long id);
 

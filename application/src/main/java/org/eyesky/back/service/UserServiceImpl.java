@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public JpaUser findUserByEmail(String email) {
+    public Optional<JpaUser> findUserByEmail(String email) {
 //        return userRepository.findByEmail(email);
         return null;
     }

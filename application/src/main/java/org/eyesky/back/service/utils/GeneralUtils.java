@@ -2,7 +2,6 @@ package org.eyesky.back.service.utils;
 
 import org.eyesky.back.repository.entity.JpaRole;
 import org.eyesky.back.repository.entity.JpaUser;
-import org.eyesky.back.service.dto.UserInfo;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.util.ArrayList;
