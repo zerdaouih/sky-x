@@ -69,8 +69,8 @@ public class AuthConfiguration extends WebSecurityConfigurerAdapter {
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 
-    @Override
-    public void configure(WebSecurity web) throws Exception {
-//        web.ignoring().antMatchers("/api/register/**","/api/secure/hello","/api/secure/login");
-    }
+//    @Override
+//    public void configure(WebSecurity web) throws Exception {
+//        web.ignoring().antMatchers("/api/register/**","/api/secure/hello");
+//    }
 }

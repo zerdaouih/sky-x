@@ -1,5 +1,6 @@
 package org.eyesky.back.repository.entity;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -7,13 +8,13 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 
-
 /**
  * The persistent class for the role database table.
  */
 @Entity(name = "Roles")
 @Getter
 @Setter
+@Data
 @NoArgsConstructor
 public class JpaRole implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -63,3 +64,4 @@ public class JpaRole implements Serializable {
 //        return builder.toString();
 //    }
 }
+

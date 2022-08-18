@@ -3,6 +3,7 @@ package org.eyesky.back;
 import lombok.extern.slf4j.Slf4j;
 import org.eyesky.back.repository.RoleRepository;
 import org.eyesky.back.repository.UserRepository;
+import org.eyesky.back.repository.entity.JpaRole;
 import org.eyesky.back.repository.entity.JpaUser;
 import org.eyesky.back.repository.entity.RoleEnum;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Role;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -38,6 +40,8 @@ public class Application {
 
     public static void main(String[] args) {
         SpringApplicationBuilder app = new SpringApplicationBuilder(Application.class);
+
+
         app.run(args);
     }
 
@@ -64,17 +68,24 @@ public class Application {
 //            }
 //        };
 //    }
-//    @Bean
-//    public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
-//        return args -> {
-//            JpaUser user = new JpaUser();
-//            user.setEmail("admin");
-//            user.setPassword(encoder.encode("admin"));
-//            user.setFirstName("admin");
-//            user.setLastName("admin");
-//            user.setRoles(Collections.singleton(roleRepository.findByName(RoleEnum.ADMIN)));
-//            this.userRepository.save(user);
-//        };
-//    }
+    @Bean
+    public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
+        return args -> {
+            JpaRole userRole = new JpaRole();
+            JpaRole adminRole = new JpaRole();
+            userRole.setName(RoleEnum.USER);
+            adminRole.setName(RoleEnum.ADMIN);
+            if(this.roleRepository.findByName(RoleEnum.USER)==null) this.roleRepository.save(userRole);
+            if(this.roleRepository.findByName(RoleEnum.ADMIN)==null) this.roleRepository.save(adminRole);
+            JpaUser user = new JpaUser();
+            user.setEmail("admin");
+            user.setPassword(encoder.encode("admin"));
+            user.setFirstName("admin");
+            user.setLastName("admin");
+            user.setRoles(Collections.singleton(roleRepository.findByName(RoleEnum.ADMIN)));
+            if (!this.userRepository.findByEmail("admin").isPresent())
+                this.userRepository.save(user);
+        };
+    }
 
 }
