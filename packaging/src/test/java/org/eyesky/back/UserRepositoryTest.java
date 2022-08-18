@@ -21,7 +21,6 @@ public class UserRepositoryTest {
     private UserRepository repo;
 
     @Test
-    @Ignore
     public void testCreateUser() {
         JpaUser user = new JpaUser();
         user.setEmail("user@gmail.com");
@@ -31,6 +30,6 @@ public class UserRepositoryTest {
         JpaUser savedUser = repo.save(user);
         JpaUser existUser = repo.findById(savedUser.getId()).get();
         assertThat(user.getEmail()).isEqualTo(existUser.getEmail());
-
+        repo.delete(user);
     }
 }
