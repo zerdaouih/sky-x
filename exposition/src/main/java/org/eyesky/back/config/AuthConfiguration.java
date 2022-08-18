@@ -56,33 +56,22 @@ public class AuthConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.cors().and().csrf().disable()
-                .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                .authorizeRequests()
-                    .antMatchers("/api/secure/login/**").permitAll()
-                    .antMatchers("/api/register/**").permitAll()
-                    .anyRequest().authenticated();
-
-//        http
+//        http.cors().and().csrf().disable()
 //                .authorizeRequests(authorizeRequests ->
-//                        authorizeRequests
-//                                .antMatchers("/board/*").hasAnyRole("MEMBER", "BOARD")
-//                                .antMatchers("/members/*").hasRole("MEMBER")
-//                                .antMatchers("/").permitAll()
+//                                authorizeRequests
+////                                      .antMatchers("/board/*").hasAnyRole("MEMBER", "BOARD")
+//                                        .antMatchers("/api/secure/login/**").permitAll()
+//                                        .antMatchers("/api/register/**").permitAll()
 //                )
-//                .httpBasic().realmName("My org ream")
+//                .oauth2Login()
 //                .and()
 //                .sessionManagement()
 //                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-//    }
+//
+//        http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 
-
-
-        http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+        http.authorizeRequests().anyRequest().authenticated().and().oauth2Login();
     }
-
-
 
 
 //    @Override

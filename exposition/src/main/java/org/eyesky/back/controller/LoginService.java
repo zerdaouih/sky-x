@@ -55,6 +55,7 @@ public class LoginService {
             SecurityContextHolder.getContext().setAuthentication(authentication);
             String jwt = jwtUtils.generateJwtToken(authentication);
 
+            //ici recupere automatiquement les info user
             CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
             log.info(" login >>> {}", userDetails.getUser().toString());
 
