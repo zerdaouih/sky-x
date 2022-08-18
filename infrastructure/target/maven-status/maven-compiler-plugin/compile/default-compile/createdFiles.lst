@@ -1,6 +1,0 @@
-org\eyesky\back\repository\entity\JpaUser.class
-org\eyesky\back\repository\entity\RoleEnum.class
-org\eyesky\back\repository\entity\JpaRole.class
-org\eyesky\back\repository\RoleRepository.class
-org\eyesky\back\repository\UserRepository.class
-org\eyesky\back\repository\entity\BaseEntity.class
